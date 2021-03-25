@@ -11,6 +11,7 @@ screen = pg.display.set_mode((width,height))
 pg.display.set_caption("Shooter")
 clock = pg.time.Clock()
 
+#La siguiente clase abraca todo lo que tiene que ver con el jugador 
 class Player(pg.sprite.Sprite):
   def __init__(self):
     super().__init__()
