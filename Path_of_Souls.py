@@ -66,27 +66,53 @@ all_sprites.add(player)
 # Game Loop
 running = True
 while running:
-  # Keep loop running at the right speed
-  clock.tick(60)
-  # Process input (events)
-  for event in pg.event.get():
+
+  menu = True
+  play = False
+
+  while menu:
+
+    for event in pg.event.get():
     # check for closing window
-    if event.type == pg.QUIT:
-      running = False
-    elif event.type == pg.MOUSEBUTTONUP:
-        player.shoot() 
-    
-  pos = pg.mouse.get_pos()
-  print(pos,"|",player.rect.x,player.rect.y)
+      if event.type == pg.QUIT:
+        menu = False
+        play = False
+      if event.type == pg.KEYDOWN:
+        if event.key == pg.K_RETURN:
+          menu = False
+          play = True
+
+  while play:
+
+    clock.tick(60)
+    # Process input (events)
+    for event in pg.event.get():
+      # check for closing window
+      if event.type == pg.QUIT:
+        running = False
+      elif event.type == pg.MOUSEBUTTONUP:
+          player.shoot() 
+      
+    pos = pg.mouse.get_pos()
+    print(pos,"|",player.rect.x,player.rect.y)
 
 
-  # Update
-  all_sprites.update()
+    # Update
+    all_sprites.update()
 
-  #Draw / Render
-  screen.fill(black)
-  all_sprites.draw(screen)
-  # *after* drawing everything, flip the display.
-  pg.display.flip()
+    #Draw / Render
+    screen.fill(black)
+    all_sprites.draw(screen)
+    # *after* drawing everything, flip the display.
+    pg.display.flip()
 
+
+
+      #while sala1:
+      #while sala2:
+      #while sala3:
+      #while sala4:
+      #while sala5:
+      #while final:
+      
 pg.quit()
