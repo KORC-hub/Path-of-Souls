@@ -2,7 +2,6 @@ import pygame as pg
 
 height = 563 # alto
 width = 1001 # ancho
-
 white = (255, 255, 255)
 black = (0, 0, 0)
 
@@ -52,17 +51,19 @@ class Player(pg.sprite.Sprite):
     all_sprites.add(bullet)
     bullets.add(bullet)
 
-class Bullet(pg.sprite.Sprite):
-  def __init__(self, x, y):
-    super().__init__()
-    
-
 all_sprites = pg.sprite.Group()
 
 player = Player()
 all_sprites.add(player)
 
+class Bullet(pg.sprite.Sprite):
+  def __init__(self, x, y):
+    super().__init__()
 
+
+background = pg.image.load("C:/Lenguajes/Python/Pygame/Path of Souls/resources/graphics/menu.png")
+sala1 = pg.image.load("C:/Lenguajes/Python/Pygame/Path of Souls/resources/graphics/Sala_1.png")
+  
 # Game Loop
 running = True
 while running:
@@ -72,6 +73,7 @@ while running:
 
   while menu:
 
+    screen.blit(background,[0,0])
     for event in pg.event.get():
     # check for closing window
       if event.type == pg.QUIT:
@@ -81,7 +83,8 @@ while running:
         if event.key == pg.K_RETURN:
           menu = False
           play = True
-
+    pg.display.flip()
+    
   while play:
 
     clock.tick(60)
@@ -101,12 +104,10 @@ while running:
     all_sprites.update()
 
     #Draw / Render
-    screen.fill(black)
+    screen.blit(sala1,[0,0])
     all_sprites.draw(screen)
     # *after* drawing everything, flip the display.
     pg.display.flip()
-
-
 
       #while sala1:
       #while sala2:
