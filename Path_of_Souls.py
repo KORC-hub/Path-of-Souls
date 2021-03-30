@@ -37,14 +37,14 @@ class Player(pg.sprite.Sprite):
       self.speed_y += self.speed
     self.rect.y += self.speed_y
 
-    if self.rect.x > 928:
-      self.rect.x = 928
-    if self.rect.x < 0:
-      self.rect.x = 0
-    if self.rect.y > 480:
-      self.rect.y = 480
-    if self.rect.y < 0:
-      self.rect.y = 0
+    if self.rect.x > 880:
+      self.rect.x = 880
+    if self.rect.x < 47:
+      self.rect.x = 47
+    if self.rect.y > 437:
+      self.rect.y = 437
+    if self.rect.y < 47:
+      self.rect.y = 47
 
   def shoot(self):
     bullet = Bullet(self.rect.centerx, self.rect.top)
