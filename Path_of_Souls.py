@@ -11,11 +11,9 @@ pg.init()
 screen = pg.display.set_mode((width,height))
 pg.display.set_caption("Path of souls")
 clock = pg.time.Clock()
-teclas = [False,False,False,False]
-player= player.personaje((width/2, height/2),teclas)
+player= player.personaje((width/2, height/2))
 posicion_base = [0,0]
-fps = 10
-
+fps = 15
 
 all_sprites = pg.sprite.Group()
 
@@ -60,10 +58,11 @@ while running:
       if event.type == pg.QUIT:
         pg.quit()
         sys.exit()
-      elif event.type == pg.MOUSEBUTTONUP:
-          player.shoot() 
+      #elif event.type == pg.MOUSEBUTTONUP:
+          #player.shoot() 
       
-    #print(player.pos_m,"|",player.rect.x,player.rect.y)
+    pos = pg.mouse.get_pos()
+    print(pos)
 
     player.handle_event(event)
     screen.blit(sala1, posicion_base)

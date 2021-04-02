@@ -1,7 +1,7 @@
 import pygame as pg
 
 class personaje(pg.sprite.Sprite):
-    def __init__(self,position,teclas):
+    def __init__(self,position):
         self.sheet = pg.image.load('C:/Lenguajes/Python/Pygame/Path of Souls/resources/graphics/Player/Ymir.png')
         self.sheet.set_clip(pg.Rect(0,0,60,100))
         self.image = self.sheet.subsurface(self.sheet.get_clip())
@@ -50,6 +50,17 @@ class personaje(pg.sprite.Sprite):
         if direction == 'stand_down':
             self.clip(self.down_states[0])
 
+        if self. rect.x < 36:
+            self.rect.x = 36
+        elif self. rect.x > 920:
+            self.rect.x = 920
+        elif self. rect.y < 36:
+            self.rect.y = 36
+        elif self. rect.y > 420:
+            self.rect.y = 420
+
+
+
         self.image = self.sheet.subsurface(self.sheet.get_clip())
 
     def handle_event(self, event):
@@ -76,5 +87,7 @@ class personaje(pg.sprite.Sprite):
             if event.key == pg.K_DOWN:
                 self.update('stand_down')
 
+    """
     def shoot(self):
       return Bullet(pg.mouse.get_pos()[0],pg.mouse.get_pos()[1])
+    """
