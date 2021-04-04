@@ -7,7 +7,7 @@ pg.init()
 screen = pg.display.set_mode((c.width,c.height))
 pg.display.set_caption(c.name)
 clock = pg.time.Clock()
-player= player.personaje((c.width/2, c.height/2))
+player = player.personaje((c.width/2, c.height/2))
 
 # Game Loop
 running = True
@@ -54,7 +54,11 @@ while running:
     pg.display.flip()
 
   while introduccion:
-    pg.time.wait(500)
+
+    if x == 0:
+      pg.time.wait(500)
+      x += 1
+
     screen.blit(c.Guide, c.posicion_texto)
     for event in pg.event.get():
       if event.type == pg.QUIT:
@@ -63,7 +67,6 @@ while running:
 
     if event.type == pg.KEYDOWN:
       if event.key == pg.K_RETURN:
-        x += 1
         introduccion = False
         sala1 = True
 

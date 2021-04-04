@@ -50,6 +50,7 @@ class personaje(pg.sprite.Sprite):
         if direction == 'stand_down':
             self.clip(self.down_states[0])
 
+        # Colisión con los bordes
         if self. rect.x < 36:
             self.rect.x = 36
         elif self. rect.x > 920:
