@@ -7,8 +7,7 @@ class personaje(pg.sprite.Sprite):
         self.image = self.sheet.subsurface(self.sheet.get_clip())
         self.rect = self.image.get_rect()
         self.rect.topleft = position
-        self.frame = 0
-        self.speed = 8
+        self.frame=0
         self.left_states  = { 0: (0,100,60,100), 1: (60,100,60,100), 2: (120,100,60,100), 3: (180,100,60,100)}
         self.right_states = { 0: (0,200,60,100), 1: (60,200,60,100), 2: (120,200,60,100), 3: (180,200,60,100)}
         self.up_states    = { 0: (0,300,60,100), 1: (60,300,60,100), 2: (120,300,60,100), 3: (180,300,60,100)}
@@ -30,16 +29,16 @@ class personaje(pg.sprite.Sprite):
     def update(self, direction):
         if direction == 'left':
             self.clip(self.left_states)
-            self.rect.x -= self.speed
+            self.rect.x -= 5
         if direction == 'right':
             self.clip(self.right_states)
-            self.rect.x += self.speed
+            self.rect.x += 5
         if direction == 'up':
             self.clip(self.up_states)
-            self.rect.y -= self.speed
+            self.rect.y -= 5
         if direction == 'down':
             self.clip(self.down_states)
-            self.rect.y += self.speed
+            self.rect.y += 5
 
         if direction == 'stand_left':
             self.clip(self.left_states[0])
@@ -58,8 +57,6 @@ class personaje(pg.sprite.Sprite):
             self.rect.y = 36
         elif self. rect.y > 420:
             self.rect.y = 420
-
-
 
         self.image = self.sheet.subsurface(self.sheet.get_clip())
 
@@ -87,7 +84,3 @@ class personaje(pg.sprite.Sprite):
             if event.key == pg.K_DOWN:
                 self.update('stand_down')
 
-    """
-    def shoot(self):
-      return Bullet(pg.mouse.get_pos()[0],pg.mouse.get_pos()[1])
-    """
