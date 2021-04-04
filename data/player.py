@@ -1,8 +1,9 @@
 import pygame as pg
+import constants as c
 
 class personaje(pg.sprite.Sprite):
     def __init__(self,position):
-        self.sheet = pg.image.load('C:/Lenguajes/Python/Pygame/Path of Souls/resources/graphics/Player/Ymir.png')
+        self.sheet = c.player
         self.sheet.set_clip(pg.Rect(0,0,60,100))
         self.image = self.sheet.subsurface(self.sheet.get_clip())
         self.rect = self.image.get_rect()
