@@ -14,7 +14,7 @@ name = "Path of souls"
 
 # coordenadas 
 posicion_base = [0,0]
-posicion_texto = [0,height-192]
+posicion_texto = [width-935,height-500]
 
 # fps
 fps = 15
@@ -29,6 +29,6 @@ sala1 = pg.image.load("C:/Lenguajes/Python/Pygame/Path of Souls/resources/graphi
 player = pg.image.load("C:/Lenguajes/Python/Pygame/Path of Souls/resources/graphics/Player/Ymir.png")
 
 # Guide
-Guide = pg.image.load("C:/Lenguajes/Python/Pygame/Path of Souls/resources/graphics/Guide/Guide.jpeg")
+Guide = pg.image.load("C:/Lenguajes/Python/Pygame/Path of Souls/resources/graphics/Guide/Guide.png")
 
 
