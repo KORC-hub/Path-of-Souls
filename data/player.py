@@ -8,7 +8,8 @@ class personaje(pg.sprite.Sprite):
         self.image = self.sheet.subsurface(self.sheet.get_clip())
         self.rect = self.image.get_rect()
         self.rect.topleft = position
-        self.frame=0
+        self.frame = 0
+        self.speed = 10
         self.left_states  = { 0: (0,100,60,100), 1: (60,100,60,100), 2: (120,100,60,100), 3: (180,100,60,100)}
         self.right_states = { 0: (0,200,60,100), 1: (60,200,60,100), 2: (120,200,60,100), 3: (180,200,60,100)}
         self.up_states    = { 0: (0,300,60,100), 1: (60,300,60,100), 2: (120,300,60,100), 3: (180,300,60,100)}
@@ -30,16 +31,16 @@ class personaje(pg.sprite.Sprite):
     def update(self, direction):
         if direction == 'left':
             self.clip(self.left_states)
-            self.rect.x -= 5
+            self.rect.x -= self.speed
         if direction == 'right':
             self.clip(self.right_states)
-            self.rect.x += 5
+            self.rect.x += self.speed
         if direction == 'up':
             self.clip(self.up_states)
-            self.rect.y -= 5
+            self.rect.y -= self.speed
         if direction == 'down':
             self.clip(self.down_states)
-            self.rect.y += 5
+            self.rect.y += self.speed
 
         if direction == 'stand_left':
             self.clip(self.left_states[0])
