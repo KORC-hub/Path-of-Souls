@@ -52,14 +52,23 @@ class personaje(pg.sprite.Sprite):
             self.clip(self.down_states[0])
 
         # Colisión con los bordes
-        if self. rect.x < 36:
-            self.rect.x = 36
-        elif self. rect.x > 920:
-            self.rect.x = 920
-        elif self. rect.y < 36:
-            self.rect.y = 36
-        elif self. rect.y > 420:
-            self.rect.y = 420
+        if self.rect.x < 37 and self.rect.y > 188 and self.rect.y < 374:
+            if self.rect.y < 188:
+                self.rect.y = 188
+            elif self.rect.y > 374:
+                self.rect.y = 374
+            elif self.rect.x < 10:
+                c.state += 1 
+                self.rect.x = c.pisicion_Entrada[0]
+        else:
+            if self.rect.x < 36:
+                self.rect.x = 36
+            elif self.rect.x > 900:
+                self.rect.x = 900
+            elif self.rect.y < 36:
+                self.rect.y = 36
+            elif self.rect.y > 420:
+                self.rect.y = 420
 
         self.image = self.sheet.subsurface(self.sheet.get_clip())
 
