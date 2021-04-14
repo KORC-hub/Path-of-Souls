@@ -1,15 +1,21 @@
 import pygame as pg
 from os import system
-import sys
+import sys, random
 from data import player
+#from data import engine as e
 import constants as c
 
 pg.init() 
 screen = pg.display.set_mode((c.width,c.height))
 pg.display.set_caption(c.name)
 clock = pg.time.Clock()
-player = player.personaje(c.pisicion_personaje)
+player = player.jugador(c.pisicion_personaje)
 
+enemies = []
+"""
+for i in range(5):
+ enemies.append([0,e.entity(random.randint(0,600)-300,80,100,100,'enemy')])
+"""
 # Game Loop
 while c.running:
 
@@ -21,19 +27,27 @@ while c.running:
 
   mx, my = pg.mouse.get_pos()
 
-  button_1 = pg.Rect(600, 450, 100, 50)
-  button_2 = pg.Rect(370, 450, 100, 50)
+  button_1 = pg.Rect(330, 450, 150, 50)
+  button_2 = pg.Rect(560, 450, 150, 50)
   if button_1.collidepoint((mx, my)):
    if c.click:
+    screen.blit(c.play_on, button_1)
+    screen.blit(c.art_off, button_2)
+    pg.display.update()
+    pg.time.wait(50)
     c.menu = False
     c.play = True
   if button_2.collidepoint((mx, my)):
    if c.click:
+    screen.blit(c.art_on, button_2)
+    screen.blit(c.play_off, button_1)
+    pg.display.update()
+    pg.time.wait(50)
     c.menu = False
-    c.play = True
+    c.art = True
 
-  pg.draw.rect(screen, (0, 0, 0), button_1)
-  pg.draw.rect(screen, (0, 0, 0), button_2)
+  screen.blit(c.play_off, button_1)
+  screen.blit(c.art_off, button_2)
  
   c.click = False
 
@@ -49,6 +63,7 @@ while c.running:
    
  while c.play:
 
+
   clock.tick(c.fps)
 
   for event in pg.event.get():
@@ -58,6 +73,9 @@ while c.running:
    if event.type == pg.KEYDOWN:
     if event.key == pg.K_a:
      c.state_vida -= 1
+    elif event.key == pg.K_s:
+     c.state_medalla += 1
+
 
   if c.state == 1:
    screen.blit(c.sala1, c.posicion_base)
@@ -69,6 +87,9 @@ while c.running:
     c.play = False
     c.state_sala2 = True
    screen.blit(c.sala2, c.posicion_base)
+   """
+   for
+   """
   elif c.state == 3:
    screen.blit(c.sala3, c.posicion_base)
   elif c.state == 4:
@@ -90,6 +111,17 @@ while c.running:
    screen.blit(c.vida_n1,(755, 20))
   elif c.state_vida == 0:
    screen.blit(c.vida_n0,(755, 20))
+
+  if c.state_medalla == 0:
+   screen.blit(c.medalla_n0,(60, 20))
+  elif c.state_medalla == 1:
+   screen.blit(c.medalla_n1,(60, 20))
+  elif c.state_medalla == 2:
+   screen.blit(c.medalla_n2,(60, 20))
+  elif c.state_medalla == 3:
+   screen.blit(c.medalla_n3,(60, 20))
+  elif c.state_medalla == 4:
+   screen.blit(c.medalla_n4,(60, 20))
   
 
   pg.display.flip()
@@ -118,17 +150,13 @@ while c.running:
  while c.state_sala2:
 
   if c.x == 1:
-   screen.fill(c.black)
-   pg.time.wait(1000)
    c.x += 1
 
-  screen.blit(c.Guide, c.posicion_texto)
   if event.type == pg.KEYDOWN:
    if event.key == pg.K_LEFT or event.key == pg.K_RIGHT or event.key == pg.K_UP or event.key == pg.K_DOWN: 
     c.state_sala2 = False
     c.play = True
    
-
   for event in pg.event.get():
    if event.type == pg.QUIT:
     pg.quit()
@@ -138,4 +166,4 @@ while c.running:
  #while sala3:
  #while final:
 
- 
+ #while c.art:
