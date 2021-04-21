@@ -53,7 +53,7 @@ class jugador(pg.sprite.Sprite):
         self.clip(self.down_states[0])
 
     # Colisión con los bordes
-    if self.rect.x < 37 and self.rect.y > 188 and self.rect.y < 374:
+    if self.rect.x < 55 and self.rect.y > 188 and self.rect.y < 374:
       if self.rect.y < 188:
         self.rect.y = 188
       elif self.rect.y > 374:
@@ -61,6 +61,7 @@ class jugador(pg.sprite.Sprite):
       elif self.rect.x < 10:
         c.state += 1 
         self.rect.x = c.pisicion_Entrada[0]
+        self.rect.y = c.pisicion_Entrada[1]
     else:
       if self.rect.x < 36:
         self.rect.x = 36
