@@ -7,7 +7,7 @@ import constants as c
 
 # main conditions for the execution of the window
 pg.init() 
-pg.mixer.init()
+#pg.mixer.init()
 screen = pg.display.set_mode((c.width,c.height))
 pg.display.set_caption(c.name)
 clock = pg.time.Clock()
@@ -15,7 +15,10 @@ player = player.jugador(c.position_personaje)
 
 # adding the creation of each medal in a list
 for i in range(4):
-  c.medal_objects.append(e.medal_obj(c.position_medalla))
+  c.medal_objects.append(e.medal_obj((random.randint(50,600),random.randint(50,400))))
+
+for i in range(1):
+  c.boss_objects.append(e.boss_obj(c.position_boss))
 
 # Game Loop
 while c.running:
@@ -75,6 +78,8 @@ while c.running:
 
     elif c.state == 1:
       screen.blit(c.state_image_room[c.state], c.position_base)
+      e.boss(screen,player.rect)
+
       if c.x == 1:
         c.play = False
         c.state_room1 = True
@@ -104,6 +109,7 @@ while c.running:
         c.state_room4 = True
       if c.state_medal == 3:
         e.medallas(screen,player.rect)
+        
     elif c.state == 5:
       c.play = False
       c.end = True 
@@ -113,6 +119,9 @@ while c.running:
 
     if c.state_life == 0 or 1 or 2 or 3:
       screen.blit(c.bar_life[c.state_life],c.position_vida)
+    else:
+      c.play = False
+      c.end = True
 
     if c.state_medal == 0 or 1 or 2 or 3 or 4:
       screen.blit(c.bar_medal[c.state_medal],c.position_bar_medal)

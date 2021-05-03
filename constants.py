@@ -1,6 +1,5 @@
 import pygame as pg
 import random
-pg.mixer.init()
 
 # sizes windows
 height = 563 # alto
@@ -23,9 +22,14 @@ position_vida = [820,0]
 position_bar_medal = [10,3]
 position_enemy = [200,200]
 medal_objects = []
+boss_objects = []
+
 
 # medal coordinates
 position_medalla = [random.randrange(130,330),random.randrange(50, 430)]
+
+# boss coordinates
+position_boss = [300,36]
 
 # limits
 limits = [0,0,901,465]
@@ -38,8 +42,9 @@ size_medal = [50,52]
 fps = 15
 
 # Accountants
+move_boss = 0
 x = 0
-state = 0
+state = 1
 state_life = 3
 state_medal = 0
 
@@ -71,7 +76,7 @@ background_end = pg.image.load("resources/graphics/states/end.png")
 room0 = pg.image.load("resources/graphics/states/Sala_0.png")
 room1 = pg.image.load("resources/graphics/states/Sala_1.png")
 room2 = pg.image.load("resources/graphics/states/Sala_2.png")
-room3 = pg.image.load("resources/graphics/states/Sala_2.png")
+room3 = pg.image.load("resources/graphics/states/Sala_3.png")
 room4 = pg.image.load("resources/graphics/states/Sala_2.png")
 state_image_room = [room0,room1,room2,room3,room4]
 
@@ -79,7 +84,9 @@ state_image_room = [room0,room1,room2,room3,room4]
 player = pg.image.load("resources/graphics/Player/Ymir.png")
 
 # picture enemy
-obstaculo = pg.image.load("C:/Lenguajes/Python/Pygame/Path of Souls/resources/graphics/Boss/obstaculo.png")
+obstaculo_1 = pg.image.load("resources/graphics/Boss/obstaculo_1.png")
+obstaculo_2 = pg.image.load("resources/graphics/Boss/obstaculo_2.png")
+obstaculo = [obstaculo_1,obstaculo_2]
 
 # picture Boss
 
@@ -116,4 +123,4 @@ art_off  = pg.image.load("resources/graphics/botones/art_off.png")
 
 # --- Sound ---
 
-S_introduccion = pg.mixer.Sound("resources/music/introduccion_juego.mp3")
+#S_introduccion = pg.mixer.Sound("resources/music/introduccion_juego.mp3")
