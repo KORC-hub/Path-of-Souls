@@ -15,10 +15,11 @@ player = player.jugador(c.position_personaje)
 
 # adding the creation of each medal in a list
 for i in range(4):
-  c.medal_objects.append(e.medal_obj((random.randint(50,600),random.randint(50,400))))
+  c.medal_objects.append(e.medal_obj((random.randint(200,600),random.randint(50,400))))
 
-for i in range(1):
-  c.boss_objects.append(e.boss_obj(c.position_boss))
+for i in range(3):
+  c.boss_objects.append(e.boss_obj(c.position_boss[c.iterador]))
+  c.iterador += 1 
 
 # Game Loop
 while c.running:
@@ -78,7 +79,9 @@ while c.running:
 
     elif c.state == 1:
       screen.blit(c.state_image_room[c.state], c.position_base)
-      e.boss(screen,player.rect)
+
+      for enemy in c.boss_objects:
+        e.boss(screen,player.rect,enemy)
 
       if c.x == 1:
         c.play = False
@@ -88,6 +91,7 @@ while c.running:
 
     elif c.state == 2:
       screen.blit(c.state_image_room[c.state], c.position_base)
+      e.boss(screen,player.rect,enemy)
       if c.x == 2:
         c.play = False
         c.state_room2 = True
@@ -114,14 +118,18 @@ while c.running:
       c.play = False
       c.end = True 
 
-    player.handle_event(event)
-    screen.blit(player.image,player.rect)
-
-    if c.state_life == 0 or 1 or 2 or 3:
-      screen.blit(c.bar_life[c.state_life],c.position_vida)
+    if c.state_personaje == 1:
+      c.state = 0
+      c.state_personaje = 0
     else:
+      player.handle_event(event)
+      screen.blit(player.image,player.rect)
+
+    if c.state_life == 0:
       c.play = False
       c.end = True
+    elif c.state_life == 1 or 2 or 3:
+      screen.blit(c.bar_life[c.state_life],c.position_vida)
 
     if c.state_medal == 0 or 1 or 2 or 3 or 4:
       screen.blit(c.bar_medal[c.state_medal],c.position_bar_medal)
@@ -130,6 +138,9 @@ while c.running:
       if event.type == pg.QUIT:
         pg.quit()
         sys.exit()
+      if event.type == pg.KEYDOWN:
+        if event.key == pg.K_a: 
+          c.state_life -= 1
 
     pg.display.flip()
 

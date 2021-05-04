@@ -46,10 +46,11 @@ def medallas(screen,player):
   if c.medal_objects[c.state_medal].collision_test(player):
    c.state_medal += 1
 
-def boss(screen,player):
-  c.boss_objects[0].render(screen)
-  if c.boss_objects[0].collision_test(player):
-    c.state_life = 2
+def boss(screen,player,enemy):
+  enemy.render(screen)
+  if enemy.collision_test(player):
+    c.state_life -= 1
+    c.state_personaje = 1 
    
 
 

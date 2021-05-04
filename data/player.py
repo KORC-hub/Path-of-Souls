@@ -10,7 +10,7 @@ class jugador(pg.sprite.Sprite):
     self.rect = self.image.get_rect()
     self.rect.topleft = position
     self.frame = 0
-    self.speed = 10
+    self.speed = 25
     self.left_states  = { 0: (0,100,60,100), 1: (60,100,60,100), 2: (120,100,60,100), 3: (180,100,60,100)}
     self.right_states = { 0: (0,200,60,100), 1: (60,200,60,100), 2: (120,200,60,100), 3: (180,200,60,100)}
     self.up_states    = { 0: (0,300,60,100), 1: (60,300,60,100), 2: (120,300,60,100), 3: (180,300,60,100)}

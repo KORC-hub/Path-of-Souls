@@ -29,7 +29,15 @@ boss_objects = []
 position_medalla = [random.randrange(130,330),random.randrange(50, 430)]
 
 # boss coordinates
-position_boss = [300,36]
+position_boss_1 = [200,36]
+position_boss_2 = [400,36]
+position_boss_3 = [600,36]
+position_boss = [position_boss_1,position_boss_2,position_boss_3]
+
+
+#speeds
+speed = [10,20,30] 
+
 
 # limits
 limits = [0,0,901,465]
@@ -42,9 +50,11 @@ size_medal = [50,52]
 fps = 15
 
 # Accountants
+iterador = 0
 move_boss = 0
 x = 0
-state = 1
+state = 0
+state_personaje = 0
 state_life = 3
 state_medal = 0
 
