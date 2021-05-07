@@ -17,10 +17,6 @@ player = player.jugador(c.position_personaje)
 for i in range(4):
   c.medal_objects.append(e.medal_obj((random.randint(200,600),random.randint(50,400))))
 
-for i in range(3):
-  c.boss_objects.append(e.boss_obj(c.position_boss[c.iterador]))
-  c.iterador += 1 
-
 # Game Loop
 while c.running:
 
@@ -79,10 +75,8 @@ while c.running:
 
     elif c.state == 1:
       screen.blit(c.state_image_room[c.state], c.position_base)
-
-      for enemy in c.boss_objects:
-        e.boss(screen,player.rect,enemy)
-
+      pg.draw.rect(screen, c.white, pg.Rect(110, 50, 800, 460),  2)
+      e.sprites.update(screen,player.rect)
       if c.x == 1:
         c.play = False
         c.state_room1 = True
@@ -91,7 +85,7 @@ while c.running:
 
     elif c.state == 2:
       screen.blit(c.state_image_room[c.state], c.position_base)
-      e.boss(screen,player.rect,enemy)
+      e.sprites.update(screen,player.rect)
       if c.x == 2:
         c.play = False
         c.state_room2 = True
@@ -100,6 +94,7 @@ while c.running:
 
     elif c.state == 3:
       screen.blit(c.state_image_room[c.state], c.position_base)
+      e.sprites.update(screen,player.rect)
       if c.x == 3:
         c.play = False
         c.state_room3 = True
