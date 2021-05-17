@@ -52,28 +52,43 @@ class jugador(pg.sprite.Sprite):
     if direction == 'stand_down':
         self.clip(self.down_states[0])
 
-    # Colisión con los bordes
-    print(self.rect.x, self.rect.y)
-    if self.rect.x < 37 and self.rect.y >= 130 and self.rect.y <= 297:
+    if c.state == 2:
+      limit = c.limits_map_2
+    else:
+      limit = c.limits_map_1
+
+    print(c.state,c.state_life,c.kinematics_counter)
+    if self.rect.x > 910 and self.rect.y >= 130 and self.rect.y <= 297:
       if self.rect.y < 138:
         self.rect.y = 138
       elif self.rect.y > 297:
         self.rect.y = 297
+    if self.rect.x < limit[0] and self.rect.y >= c.limit_salida[2] and self.rect.y <= c.limit_salida[3]:
+      if self.rect.y < c.limit_salida[2]:
+        self.rect.y = c.limit_salida[2]
+      elif self.rect.y > c.limit_salida[3]:
+        self.rect.y = c.limit_salida[3]
       elif self.rect.x < 1:
         c.state += 1 
         self.rect.x = c.position_Entrada[0]
         self.rect.y = c.position_Entrada[1]
     else:
-      if self.rect.x < 36:
-        self.rect.x = 36
-      elif self.rect.x > 900:
-        self.rect.x = 900
-      elif self.rect.y < 36:
-        self.rect.y = 36
-      elif self.rect.y > 420:
-        self.rect.y = 420
+      if self.rect.x < limit[0]:
+        self.rect.x = limit[0]
+      elif self.rect.x > limit[1]:
+        self.rect.x = limit[1]
+      elif self.rect.y < limit[2]:
+        self.rect.y = limit[2]
+      elif self.rect.y > limit[3]:
+        self.rect.y = limit[3]
+
+    if c.state_personaje == 1:
+      self.rect.x = c.position_collision[0]
+      self.rect.y = c.position_collision[1]
 
     self.image = self.sheet.subsurface(self.sheet.get_clip())
+
+
 
   def handle_event(self, event):
     if event.type == pg.QUIT:
