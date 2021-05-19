@@ -17,12 +17,16 @@ position_base = [0,0]
 position_base_art = [0,0]
 position_texto = [width-935,height-500]
 position_collision = [width - 100,height/2]
-position_personaje = [width - 200,height/2]
+position_personaje = [width - 50,height/2]
 position_Entrada = [990,height/2]
-position_vida = [820,0]
-position_bar_medal = [10,3]
+position_vida = [823,772,721,670,512]
+position_bar_medal = [331,274,217,160,505]
 position_enemy = [200,200]
-medal_objects = []
+
+# listas de objetos
+medal_objects = [0,0,]
+bar_medal_objects = [0,0,]
+bar_life_objects = []
 boss_objects = []
 
 
@@ -43,8 +47,7 @@ collider = False
 limits_art = -1001 + height
 limits_map_1 = [36,900,2,420]
 limits_map_2 = [100,850,2,420]
-limit_entrada = [1,1,130,297]
-limit_salida = [1,1,130,297]
+limit = [1,950,120,297]
 
 # size of objects
 size_medal = [50,52]
@@ -53,13 +56,15 @@ size_medal = [50,52]
 fps = 15
 
 # Accountants
+score = 0
 iterador = 0
 move_boss = 0
 x = 0
 state = 0
 kinematics_counter = 0
+medal_counter = -1
 state_personaje = 0
-state_life = 3
+state_life = 4
 state_medal = 0
 
 # state (Boolean)
@@ -70,7 +75,8 @@ art = False
 end = False
 introduction = False
 kinematics = False
-
+daño = False
+medal_on = True
 
 # Controls
 click = False
@@ -111,9 +117,9 @@ player = pg.image.load("resources/graphics/Player/Ymir.png")
 # picture enemy
 Pettra = pg.image.load("resources/graphics/Boss/ataquePettra.png")
 Morrigan = pg.image.load("resources/graphics/Boss/ataqueMorrigan.png")
-Mundus = pg.image.load("resources/graphics/Boss/ataqueMundus.png")
 Akhlut = pg.image.load("resources/graphics/Boss/ataqueAkhlut.png")
-obstaculo_image = [0,0,Pettra,Pettra,Morrigan,0,Mundus,0,Akhlut]
+Mundus = pg.image.load("resources/graphics/Boss/ataqueMundus.png")
+obstaculo_image = [0,0,Pettra,Pettra,Morrigan,0,Akhlut,0,Mundus]
 
 # picture Boss
 
@@ -121,27 +127,22 @@ obstaculo_image = [0,0,Pettra,Pettra,Morrigan,0,Mundus,0,Akhlut]
 Guide = pg.image.load("resources/graphics/Guide/Guide.png")
 
 # picture life bar
-life_n3 = pg.image.load("resources/graphics/vida/N_vida_3.png")
-life_n2 = pg.image.load("resources/graphics/vida/N_vida_2.png")
-life_n1 = pg.image.load("resources/graphics/vida/N_vida_1.png")
-life_n0 = pg.image.load("resources/graphics/vida/N_vida_0.png")
-bar_life = [life_n0,life_n1,life_n2,life_n3]
+life_off = pg.image.load("resources/graphics/vida/vida_off.png")
+life_on = pg.image.load("resources/graphics/vida/vida_on.png")
+life = [life_on,life_off]
 
 # picture medal
 medal_n1 = pg.image.load("resources/graphics/medallas/medalla_1.png")
 medal_n2 = pg.image.load("resources/graphics/medallas/medalla_2.png")
 medal_n3 = pg.image.load("resources/graphics/medallas/medalla_3.png")
 medal_n4 = pg.image.load("resources/graphics/medallas/medalla_4.png")
-medals = [0,medal_n1,medal_n2,medal_n3,medal_n4]
+medals = [medal_n1,medal_n2,medal_n3,medal_n4]
 
-# picture bar medal
-Bar_medal_n0 = pg.image.load("resources/graphics/medallas/Barra_medalla_0.png")
-Bar_medal_n1 = pg.image.load("resources/graphics/medallas/Barra_medalla_1.png")
-Bar_medal_n2 = pg.image.load("resources/graphics/medallas/Barra_medalla_2.png")
-Bar_medal_n3 = pg.image.load("resources/graphics/medallas/Barra_medalla_3.png")
-Bar_medal_n4 = pg.image.load("resources/graphics/medallas/Barra_medalla_4.png")
-bar_medal = [Bar_medal_n0,Bar_medal_n1,Bar_medal_n2,Bar_medal_n3,Bar_medal_n4]
-medals_obj = [medal_n1,medal_n2,medal_n3,medal_n4]
+medal_n1_off = pg.image.load("resources/graphics/medallas/medalla_1_off.png")
+medal_n2_off = pg.image.load("resources/graphics/medallas/medalla_2_off.png")
+medal_n3_off = pg.image.load("resources/graphics/medallas/medalla_3_off.png")
+medal_n4_off = pg.image.load("resources/graphics/medallas/medalla_4_off.png")
+bar_medal = [medal_n1_off,medal_n2_off,medal_n3_off,medal_n4_off]
 
 # picture buttons
 play_on  = pg.image.load("resources/graphics/botones/play_on.png")

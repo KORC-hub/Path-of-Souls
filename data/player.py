@@ -1,10 +1,10 @@
 import pygame as pg
-import constants as c
+from data import variables as v
 
 class jugador(pg.sprite.Sprite):
   def __init__(self,position):
     pg.sprite.Sprite.__init__(self)
-    self.sheet = c.player
+    self.sheet = v.player
     self.sheet.set_clip(pg.Rect(0,0,60,100))
     self.image = self.sheet.subsurface(self.sheet.get_clip())
     self.rect = self.image.get_rect()
@@ -52,26 +52,26 @@ class jugador(pg.sprite.Sprite):
     if direction == 'stand_down':
         self.clip(self.down_states[0])
 
-    if c.state == 2:
-      limit = c.limits_map_2
+    if v.state == 2:
+      limit = v.limits_map_2
     else:
-      limit = c.limits_map_1
+      limit = v.limits_map_1
 
-    print(c.state,c.state_life,c.kinematics_counter)
-    if self.rect.x > 910 and self.rect.y >= 130 and self.rect.y <= 297:
-      if self.rect.y < 138:
-        self.rect.y = 138
-      elif self.rect.y > 297:
-        self.rect.y = 297
-    if self.rect.x < limit[0] and self.rect.y >= c.limit_salida[2] and self.rect.y <= c.limit_salida[3]:
-      if self.rect.y < c.limit_salida[2]:
-        self.rect.y = c.limit_salida[2]
-      elif self.rect.y > c.limit_salida[3]:
-        self.rect.y = c.limit_salida[3]
-      elif self.rect.x < 1:
-        c.state += 1 
-        self.rect.x = c.position_Entrada[0]
-        self.rect.y = c.position_Entrada[1]
+    print("|",v.state,v.state_life,v.kinematics_counter,v.state_medal, v.medal_counter,v.state_life,"|",self.rect.x, self.rect.y,"|")
+
+    if self.rect.y >= v.limit[2] and self.rect.y <= v.limit[3] and (self.rect.x < limit[0] or self.rect.x > limit[1]):
+      if self.rect.y < v.limit[2]:
+        self.rect.y = v.limit[2]
+      elif self.rect.y > v.limit[3]:
+        self.rect.y = v.limit[3]
+      elif self.rect.x > v.limit[1]:
+        self.rect.x = v.limit[1]
+      elif self.rect.x < v.limit[0]:
+        v.medal_on = True 
+        v.medal_counter +=1 
+        v.state += 1 
+        self.rect.x = v.position_Entrada[0]
+        self.rect.y = v.position_Entrada[1]
     else:
       if self.rect.x < limit[0]:
         self.rect.x = limit[0]
@@ -82,13 +82,11 @@ class jugador(pg.sprite.Sprite):
       elif self.rect.y > limit[3]:
         self.rect.y = limit[3]
 
-    if c.state_personaje == 1:
-      self.rect.x = c.position_collision[0]
-      self.rect.y = c.position_collision[1]
+    if v.state_personaje == 1:
+      self.rect.x = v.position_collision[0]
+      self.rect.y = v.position_collision[1]
 
     self.image = self.sheet.subsurface(self.sheet.get_clip())
-
-
 
   def handle_event(self, event):
     if event.type == pg.QUIT:

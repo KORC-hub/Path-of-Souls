@@ -1,12 +1,12 @@
 import pygame as pg
 import random as r
-import constants as c
+from data import variables as v
 from data import player 
 
 class enemy(pg.sprite.Sprite):
 	def __init__(self):
 		super().__init__()
-		self.image = c.obstaculo_image[2]
+		self.image = v.obstaculo_image[2]
 		self.rect = self.image.get_rect()
 		self.rect.x = r.randrange(200,700)
 		self.rect.y = r.randrange(50,450)
@@ -25,18 +25,19 @@ class enemy(pg.sprite.Sprite):
 			self.velocidad_y -= 10
 		if self.rect.top < 50:
 			self.velocidad_y += 5
-			
-		screen.blit(c.obstaculo_image[c.state],(self.rect.x,self.rect.y))
+
+		screen.blit(v.obstaculo_image[v.state],(self.rect.x,self.rect.y))
 
 		if self.rect.colliderect(rect):
-			c.state_personaje = 1 
-			c.state_life -= 1
+			v.state_personaje = 1 
+			v.daño = True
+			v.state_life -= 1
 		else:
-		 c.state_personaje = 0
+		 v.state_personaje = 0
 
 
 sprites = pg.sprite.Group()
 
-for x in range(1):
+for x in range(5):
 	enemy_object = enemy()
 	sprites.add(enemy_object)
