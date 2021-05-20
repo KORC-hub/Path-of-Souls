@@ -16,7 +16,11 @@ pg.init()
 screen = pg.display.set_mode((v.width,v.height))
 pg.display.set_caption(v.name)
 clock = pg.time.Clock()
-player = player.jugador(v.position_personaje)
+player = player.jugador()
+
+pg.mixer.music.load(v.music_1)
+pg.mixer.music.play(3)
+pg.mixer.music.set_volume(0.03)
 
 # adding the creation of each medal in a list
 for i in range(4):
@@ -42,6 +46,7 @@ while v.running:
 
     if v.button_1.collidepoint((mx,my)):
      if v.click:
+      v.seleccion_opcion.play()
       screen.blit(v.play_on, v.button_1)
       screen.blit(v.art_off, v.button_2)
       pg.display.update()
@@ -50,6 +55,7 @@ while v.running:
       v.play = True
     elif v.button_2.collidepoint((mx,my)):
      if v.click:
+      v.seleccion_opcion.play()
       screen.blit(v.art_on, v.button_2)
       screen.blit(v.play_off, v.button_1)
       pg.display.update()
@@ -100,7 +106,7 @@ while v.running:
       if v.state == 0:
         pass
       else:
-        e.sprites.update(screen,((player.rect.x+10),(player.rect.y+20),30,65))
+        e.enemy.update(screen, player.rect)
 
       player.handle_event(event)
       screen.blit(player.image,player.rect)
@@ -131,6 +137,7 @@ while v.running:
 
     if v.button_x.collidepoint((mx,my)):
      if v.click:
+      v.seleccion_opcion.play()
       screen.blit(v.x_on, v.button_x)
       pg.display.update()
       pg.time.wait(50)

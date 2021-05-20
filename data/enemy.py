@@ -3,15 +3,17 @@ import random as r
 from data import variables as v
 from data import player 
 
-class enemy(pg.sprite.Sprite):
+pg.mixer.init()
+
+class enemy_obj(pg.sprite.Sprite):
 	def __init__(self):
 		super().__init__()
 		self.image = v.obstaculo_image[2]
 		self.rect = self.image.get_rect()
 		self.rect.x = r.randrange(200,700)
 		self.rect.y = r.randrange(50,450)
-		self.velocidad_x = r.randrange(-15,-5)
-		self.velocidad_y = r.randrange(-15,-5)
+		self.velocidad_x = -10
+		self.velocidad_y = -10
 
 	def update(self,screen,rect):
 		self.rect.x += self.velocidad_x 
@@ -29,15 +31,14 @@ class enemy(pg.sprite.Sprite):
 		screen.blit(v.obstaculo_image[v.state],(self.rect.x,self.rect.y))
 
 		if self.rect.colliderect(rect):
-			v.state_personaje = 1 
 			v.daño = True
-			v.state_life -= 1
+			v.perdida_vida.play()
 		else:
-		 v.state_personaje = 0
+			v.daño = False
 
 
-sprites = pg.sprite.Group()
+enemy = pg.sprite.Group()
 
-for x in range(5):
-	enemy_object = enemy()
-	sprites.add(enemy_object)
+for x in range(1):
+	enemy_object = enemy_obj()
+	enemy.add(enemy_object)

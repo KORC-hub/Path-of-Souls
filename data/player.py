@@ -2,13 +2,13 @@ import pygame as pg
 from data import variables as v
 
 class jugador(pg.sprite.Sprite):
-  def __init__(self,position):
+  def __init__(self):
     pg.sprite.Sprite.__init__(self)
     self.sheet = v.player
     self.sheet.set_clip(pg.Rect(0,0,60,100))
     self.image = self.sheet.subsurface(self.sheet.get_clip())
     self.rect = self.image.get_rect()
-    self.rect.topleft = position
+    self.rect.topleft = v.position_personaje
     self.frame = 0
     self.speed = 25
     self.left_states  = { 0: (0,100,60,100), 1: (60,100,60,100), 2: (120,100,60,100), 3: (180,100,60,100)}
@@ -57,7 +57,7 @@ class jugador(pg.sprite.Sprite):
     else:
       limit = v.limits_map_1
 
-    print("|",v.state,v.state_life,v.kinematics_counter,v.state_medal, v.medal_counter,v.state_life,"|",self.rect.x, self.rect.y,"|")
+    print("|",v.state,v.state_life,v.kinematics_counter,v.state_medal, v.medal_counter,v.state_life,v.daño,"|",self.rect.x, self.rect.y,"|")
 
     if self.rect.y >= v.limit[2] and self.rect.y <= v.limit[3] and (self.rect.x < limit[0] or self.rect.x > limit[1]):
       if self.rect.y < v.limit[2]:
@@ -82,9 +82,10 @@ class jugador(pg.sprite.Sprite):
       elif self.rect.y > limit[3]:
         self.rect.y = limit[3]
 
-    if v.state_personaje == 1:
+    if v.daño:
       self.rect.x = v.position_collision[0]
       self.rect.y = v.position_collision[1]
+      v.state_life -= 1
 
     self.image = self.sheet.subsurface(self.sheet.get_clip())
 

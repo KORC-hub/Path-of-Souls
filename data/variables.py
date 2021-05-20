@@ -1,6 +1,8 @@
 import pygame as pg
 import random
 
+pg.mixer.init()
+
 # sizes windows
 height = 563 # alto
 width = 1001 # ancho
@@ -16,7 +18,7 @@ name = "Path of souls"
 position_base = [0,0]
 position_base_art = [0,0]
 position_texto = [width-935,height-500]
-position_collision = [width - 100,height/2]
+position_collision = [width - 50,height/2]
 position_personaje = [width - 50,height/2]
 position_Entrada = [990,height/2]
 position_vida = [823,772,721,670,512]
@@ -63,7 +65,6 @@ x = 0
 state = 0
 kinematics_counter = 0
 medal_counter = -1
-state_personaje = 0
 state_life = 4
 state_medal = 0
 
@@ -152,4 +153,13 @@ art_off  = pg.image.load("resources/graphics/botones/art_off.png")
 x_on   = pg.image.load("resources/graphics/botones/X_on.png")
 x_off  = pg.image.load("resources/graphics/botones/X_off.png")
 
+# --- music ---
+
+music_1 = "resources/music/juego.mp3"
+
+
 # --- Sound ---
+
+bonus = pg.mixer.Sound("resources/sound/Bonificación.mp3")
+perdida_vida = pg.mixer.Sound("resources/sound/perdida_vida.mp3")
+seleccion_opcion = pg.mixer.Sound("resources/sound/seleccion_opcion_menu.mp3")
