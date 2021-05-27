@@ -73,7 +73,9 @@ running = True
 menu = True
 play = False
 art = False
-end = False
+pause = False
+end_game = False
+game_over = False
 introduction = False
 kinematics = False
 daño = False
@@ -83,14 +85,18 @@ medal_on = True
 click = False
 
 # buttons
-button_1 = pg.Rect(330, 450, 150, 50)
-button_2 = pg.Rect(560, 450, 150, 50)
+button_menu_play = pg.Rect(330, 450, 150, 50)
+button_menu_art = pg.Rect(560, 450, 150, 50)
+button_pause_play = pg.Rect(440, 250, 150, 50)
+button_pause_exit = pg.Rect(440, 350, 150, 50)
 button_x = pg.Rect(920, 10, 73, 50)
 
 # picture background
-background = pg.image.load("resources/graphics/states/menu.jpeg")
+background_menu = pg.image.load("resources/graphics/states/menu.jpeg")
 background_art = pg.image.load("resources/graphics/states/ART.png")
-background_end = pg.image.load("resources/graphics/states/end.png")
+background_pause = pg.image.load("resources/graphics/states/pause.png")
+background_end_game = pg.image.load("resources/graphics/states/end_game.png")
+background_game_over = pg.image.load("resources/graphics/states/game_over.png")
 
 # picture maps
 room0 = pg.image.load("resources/graphics/states/Sala_0.png")
@@ -150,6 +156,8 @@ play_on  = pg.image.load("resources/graphics/botones/play_on.png")
 play_off = pg.image.load("resources/graphics/botones/play_off.png")
 art_on   = pg.image.load("resources/graphics/botones/art_on.png")
 art_off  = pg.image.load("resources/graphics/botones/art_off.png")
+exit_on   = pg.image.load("resources/graphics/botones/exit_on.png")
+exit_off  = pg.image.load("resources/graphics/botones/exit_off.png")
 x_on   = pg.image.load("resources/graphics/botones/X_on.png")
 x_off  = pg.image.load("resources/graphics/botones/X_off.png")
 

@@ -41,30 +41,30 @@ while v.running:
 
     clock.tick(v.fps)
 
-    screen.blit(v.background,v.position_base)
+    screen.blit(v.background_menu,v.position_base)
     mx,my = pg.mouse.get_pos()
 
-    if v.button_1.collidepoint((mx,my)):
+    if v.button_menu_play.collidepoint((mx,my)):
      if v.click:
       v.seleccion_opcion.play()
-      screen.blit(v.play_on, v.button_1)
-      screen.blit(v.art_off, v.button_2)
+      screen.blit(v.play_on, v.button_menu_play)
+      screen.blit(v.art_off, v.button_menu_art)
       pg.display.update()
       pg.time.wait(50)
       v.menu = False
       v.play = True
-    elif v.button_2.collidepoint((mx,my)):
+    elif v.button_menu_art.collidepoint((mx,my)):
      if v.click:
       v.seleccion_opcion.play()
-      screen.blit(v.art_on, v.button_2)
-      screen.blit(v.play_off, v.button_1)
+      screen.blit(v.art_on, v.button_menu_art)
+      screen.blit(v.play_off, v.button_menu_play)
       pg.display.update()
       pg.time.wait(50)
       v.menu = False
       v.art = True
 
-    screen.blit(v.play_off, v.button_1)
-    screen.blit(v.art_off, v.button_2)
+    screen.blit(v.play_off, v.button_menu_play)
+    screen.blit(v.art_off, v.button_menu_art)
 
     for event in pg.event.get():
       if event.type == pg.QUIT:
@@ -85,7 +85,7 @@ while v.running:
 
     if v.state == 10:
       v.play = False
-      v.end = True
+      v.end_game = True
     elif v.state % 2 != 0:
       v.play = False
       v.kinematics = True
@@ -113,7 +113,7 @@ while v.running:
 
       if v.state_life <= 0:
         v.play = False
-        v.end = True
+        v.game_over = True
       else:
         bf.render_bar_life(screen)
 
@@ -126,13 +126,67 @@ while v.running:
         if event.type == pg.KEYDOWN:
           if event.key == pg.K_a: 
             v.state_life -= 1
+          if event.key == pg.K_ESCAPE:
+            v.play = False
+            v.pause = True
 
     pg.display.flip()
+
+ while v.pause:
+
+    screen.blit(v.state_image_room[v.state], v.position_base)
+    screen.blit(v.background_pause, v.position_base)
+    mx,my = pg.mouse.get_pos()
+
+    if v.button_pause_play.collidepoint((mx,my)):
+     if v.click:
+      v.seleccion_opcion.play()
+      screen.blit(v.play_on, v.button_pause_play)
+      screen.blit(v.exit_off, v.button_pause_exit)
+      pg.display.update()
+      pg.time.wait(50)
+      v.pause = False
+      v.play = True
+    elif v.button_pause_exit.collidepoint((mx,my)):
+     if v.click:
+      v.seleccion_opcion.play()
+      screen.blit(v.exit_on, v.button_pause_exit)
+      screen.blit(v.play_off, v.button_pause_play)
+      pg.display.update()
+      pg.time.wait(50)
+      v.x = 0
+      v.state = 0
+      v.state_medal = 0
+      v.state_life = 3
+      v.pause = False
+      v.menu = True
+
+    screen.blit(v.play_off, v.button_pause_play)
+    screen.blit(v.exit_off, v.button_pause_exit)
+
+    for event in pg.event.get():
+      if event.type == pg.QUIT:
+        pg.quit()
+        sys.exit()
+      if event.type == pg.MOUSEBUTTONDOWN:
+        if event.button == 1:
+          v.click = True
+      elif event.type == pg.MOUSEBUTTONUP:
+        if event.button == 1:
+          v.click = False
+      elif event.type == pg.KEYDOWN:
+        if event.key == pg.K_ESCAPE:
+          v.click = False
+          v.pause = False
+          v.play = True
+
+    pg.display.flip()
+     
 
  while v.art:
 
     mx,my = pg.mouse.get_pos()
-    screen.blit(v.background, v.position_base)
+    screen.blit(v.background_menu, v.position_base)
     screen.blit(v.background_art, v.position_base_art)
 
     if v.button_x.collidepoint((mx,my)):
@@ -209,9 +263,10 @@ while v.running:
 
     pg.display.flip()
 
- while v.end:
 
-    screen.blit(v.background_end, v.position_base)
+ while v.game_over:
+
+    screen.blit(v.background_game_over, v.position_base)
     for event in pg.event.get():
       if event.type == pg.QUIT:
         pg.quit()
@@ -222,7 +277,24 @@ while v.running:
         v.state = 0
         v.state_medal = 0
         v.state_life = 3
-        v.end = False
+        v.game_over = False
         v.menu = True
+
+    pg.display.flip()
+
+ while v.end_game:
+
+    screen.blit(v.background_end_game, v.position_base)
+    for event in pg.event.get():
+      if event.type == pg.QUIT:
+        pg.quit()
+        sys.exit()
+    if event.type == pg.KEYDOWN:
+      v.x = 0
+      v.state = 0
+      v.state_medal = 0
+      v.state_life = 3
+      v.end_game = False
+      v.menu = True
 
     pg.display.flip()
