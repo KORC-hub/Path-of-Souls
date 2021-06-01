@@ -19,8 +19,26 @@ clock = pg.time.Clock()
 player = player.jugador()
 
 pg.mixer.music.load(v.music_1)
-pg.mixer.music.play(3)
+pg.mixer.music.play(-1)
 pg.mixer.music.set_volume(0.03)
+
+def reiniciar():
+  bf.reiniciar_life()
+  bm.reiniciar_medal()
+  e.reiniciar_enemy()
+  v.x = 0
+  v.state = 0
+  v.score = 0
+  v.Velocidad_enemigo = 0
+  v.state_medal = 0
+  v.medal_counter = -1
+  v.daño = False
+  v.medal_on = True
+  v.state_life = 4
+  v.pause = False
+  v.end_game = False
+  v.game_over = False
+  v.menu = True
 
 # adding the creation of each medal in a list
 for i in range(4):
@@ -97,6 +115,7 @@ while v.running:
 
       screen.blit(v.state_image_room[v.state], v.position_base)
 
+
       if v.state == 0:
         pass
       else:
@@ -110,6 +129,14 @@ while v.running:
 
       player.handle_event(event)
       screen.blit(player.image,player.rect)
+
+      screen.blit(v.barra, v.position_barra)
+      score_text  = v.fuente.render(str(v.score), False, v.white_green)
+
+      if v.score == 0:
+        screen.blit(score_text, ((v.position_score[0] + 30),v.position_score[1]))
+      else:
+        screen.blit(score_text, v.position_score)
 
       if v.state_life <= 0:
         v.play = False
@@ -154,12 +181,7 @@ while v.running:
       screen.blit(v.play_off, v.button_pause_play)
       pg.display.update()
       pg.time.wait(50)
-      v.x = 0
-      v.state = 0
-      v.state_medal = 0
-      v.state_life = 3
-      v.pause = False
-      v.menu = True
+      reiniciar()
 
     screen.blit(v.play_off, v.button_pause_play)
     screen.blit(v.exit_off, v.button_pause_exit)
@@ -273,12 +295,7 @@ while v.running:
         sys.exit()
     if event.type == pg.KEYDOWN:
       if event.key == pg.K_ESCAPE: 
-        v.x = 0
-        v.state = 0
-        v.state_medal = 0
-        v.state_life = 3
-        v.game_over = False
-        v.menu = True
+        reiniciar()
 
     pg.display.flip()
 
@@ -290,11 +307,9 @@ while v.running:
         pg.quit()
         sys.exit()
     if event.type == pg.KEYDOWN:
-      v.x = 0
-      v.state = 0
-      v.state_medal = 0
-      v.state_life = 3
-      v.end_game = False
-      v.menu = True
+      if event.key == pg.K_ESCAPE:
+        reiniciar()
 
     pg.display.flip()
+
+

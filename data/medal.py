@@ -20,6 +20,7 @@ def medallas(screen,player):
 		v.medal_objects[v.state].render(screen)
 		if v.medal_objects[v.state].collision_test(player):
 		 v.bonus.play()
+		 v.score += 500
 		 v.medal_on = False
 
 

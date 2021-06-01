@@ -2,6 +2,7 @@ import pygame as pg
 import random
 
 pg.mixer.init()
+pg.font.init()
 
 # sizes windows
 height = 563 # alto
@@ -10,6 +11,7 @@ width = 1001 # ancho
 # Colors
 white = (255, 255, 255) # color blanco
 black = (0, 0, 0) # color negro
+white_green = (24, 196, 66)
 
 # window name
 name = "Path of souls"
@@ -21,8 +23,10 @@ position_texto = [width-935,height-500]
 position_collision = [width - 50,height/2]
 position_personaje = [width - 50,height/2]
 position_Entrada = [990,height/2]
-position_vida = [823,772,721,670,512]
-position_bar_medal = [331,274,217,160,505]
+position_barra = [130,485]
+position_score = [475,505]
+position_vida = [823,772,721,670,507]
+position_bar_medal = [331,274,217,160,500]
 position_enemy = [200,200]
 
 # listas de objetos
@@ -67,6 +71,7 @@ kinematics_counter = 0
 medal_counter = -1
 state_life = 4
 state_medal = 0
+Velocidad_enemigo = 0
 
 # state (Boolean)
 running = True
@@ -90,6 +95,9 @@ button_menu_art = pg.Rect(560, 450, 150, 50)
 button_pause_play = pg.Rect(440, 250, 150, 50)
 button_pause_exit = pg.Rect(440, 350, 150, 50)
 button_x = pg.Rect(920, 10, 73, 50)
+
+# Text 
+fuente = pg.font.SysFont("Courier", 40)
 
 # picture background
 background_menu = pg.image.load("resources/graphics/states/menu.jpeg")
@@ -132,6 +140,10 @@ obstaculo_image = [0,0,Pettra,Pettra,Morrigan,0,Akhlut,0,Mundus]
 
 # picture Guide
 Guide = pg.image.load("resources/graphics/Guide/Guide.png")
+
+# Barra 
+barra = pg.image.load("resources/graphics/Guide/barra.png")
+
 
 # picture life bar
 life_off = pg.image.load("resources/graphics/vida/vida_off.png")

@@ -12,8 +12,15 @@ class bar_life_obj():
 	def add(self):
 		self.image = v.life[1]
 
+	def reiniciar(self):
+		self.image = v.life[0]
+
 def render_bar_life(screen):
 	for i in range(4):
 		v.bar_life_objects[i].render(screen)
 		if v.daño:
 			v.bar_life_objects[v.state_life].add()
+
+def reiniciar_life():
+	for i in range(4):
+		v.bar_life_objects[i].reiniciar()

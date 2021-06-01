@@ -70,6 +70,8 @@ class jugador(pg.sprite.Sprite):
         v.medal_on = True 
         v.medal_counter +=1 
         v.state += 1 
+        if v.Velocidad_enemigo < 3:
+          v.Velocidad_enemigo += 1
         self.rect.x = v.position_Entrada[0]
         self.rect.y = v.position_Entrada[1]
     else:
