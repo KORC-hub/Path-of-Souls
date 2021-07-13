@@ -131,7 +131,10 @@ while v.running:
       screen.blit(player.image,player.rect)
 
       screen.blit(v.barra, v.position_barra)
-      score_text  = v.fuente.render(str(v.score), False, v.white_green)
+      if v.score < 0:
+        v.score = 0
+      else:
+        score_text  = v.fuente.render(str(v.score), False, v.white_green)
 
       if v.score == 0:
         screen.blit(score_text, ((v.position_score[0] + 30),v.position_score[1]))

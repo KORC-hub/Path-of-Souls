@@ -61,7 +61,7 @@ limit = [1,950,120,297]
 size_medal = [50,52]
 
 # frames per second
-fps = 30
+fps = 20
 
 # Accountants
 score = 0

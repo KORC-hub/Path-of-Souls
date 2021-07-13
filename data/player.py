@@ -71,7 +71,7 @@ class jugador(pg.sprite.Sprite):
         v.medal_counter +=1 
         v.state += 1 
         if v.Velocidad_enemigo < 3:
-          v.Velocidad_enemigo += 1
+          v.Velocidad_enemigo += 2
         self.rect.x = v.position_Entrada[0]
         self.rect.y = v.position_Entrada[1]
     else:
@@ -88,6 +88,7 @@ class jugador(pg.sprite.Sprite):
       self.rect.x = v.position_collision[0]
       self.rect.y = v.position_collision[1]
       v.state_life -= 1
+      v.score -= 20
 
     self.image = self.sheet.subsurface(self.sheet.get_clip())
 
