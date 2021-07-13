@@ -70,7 +70,7 @@ while v.running:
       pg.display.update()
       pg.time.wait(50)
       v.menu = False
-      v.play = True
+      v.game = True
     elif v.button_menu_art.collidepoint((mx,my)):
      if v.click:
       v.seleccion_opcion.play()
@@ -97,24 +97,24 @@ while v.running:
      
     pg.display.flip()
    
- while v.play:
+ while v.game:
  
     clock.tick(v.fps)
 
     if v.state == 10:
-      v.play = False
+      v.game = False
       v.end_game = True
     elif v.state % 2 != 0:
-      v.play = False
+      v.game = False
       v.kinematics = True
     else:
       if v.x == 0:
         v.x += 1
-        v.play = False
+        v.game = False
         v.introduction = True 
 
       screen.blit(v.state_image_room[v.state], v.position_base)
-
+      mx,my = pg.mouse.get_pos()
 
       if v.state == 0:
         pass
@@ -139,22 +139,38 @@ while v.running:
         screen.blit(score_text, v.position_score)
 
       if v.state_life <= 0:
-        v.play = False
+        v.game = False
         v.game_over = True
       else:
         bf.render_bar_life(screen)
 
       bm.render_bar_medal(screen)
 
+      if v.button_pause_mouse.collidepoint((mx,my)):
+       if v.click:
+        v.seleccion_opcion.play()
+        screen.blit(v.pause_mouse_on, v.button_pause_mouse)
+        pg.display.update()
+        pg.time.wait(50)
+        v.game = False
+        v.pause = True
+        
+      screen.blit(v.pause_mouse_off, v.button_pause_mouse)
+
       for event in pg.event.get():
         if event.type == pg.QUIT:
           pg.quit()
           sys.exit()
+        if event.type == pg.MOUSEBUTTONDOWN:
+          if event.button == 1:
+            v.click = True
+        elif event.type == pg.MOUSEBUTTONUP:
+          if event.button == 1:
+            v.click = False
         if event.type == pg.KEYDOWN:
-          if event.key == pg.K_a: 
-            v.state_life -= 1
           if event.key == pg.K_ESCAPE:
-            v.play = False
+            v.seleccion_opcion.play()
+            v.game = False
             v.pause = True
 
     pg.display.flip()
@@ -173,7 +189,7 @@ while v.running:
       pg.display.update()
       pg.time.wait(50)
       v.pause = False
-      v.play = True
+      v.game = True
     elif v.button_pause_exit.collidepoint((mx,my)):
      if v.click:
       v.seleccion_opcion.play()
@@ -198,9 +214,10 @@ while v.running:
           v.click = False
       elif event.type == pg.KEYDOWN:
         if event.key == pg.K_ESCAPE:
+          v.seleccion_opcion.play()
           v.click = False
+          v.game = True
           v.pause = False
-          v.play = True
 
     pg.display.flip()
      
@@ -257,7 +274,7 @@ while v.running:
       elif event.type == pg.KEYDOWN:
         if event.key == pg.K_LEFT or event.key == pg.K_RIGHT or event.key == pg.K_UP or event.key == pg.K_DOWN: 
           v.introduction = False
-          v.play = True
+          v.game = True
 
     pg.display.flip()
 
@@ -281,7 +298,7 @@ while v.running:
           v.state += 1 
           v.kinematics_counter = 0
           v.kinematics = False
-          v.play = True
+          v.game = True
 
     pg.display.flip()
 
@@ -311,5 +328,3 @@ while v.running:
         reiniciar()
 
     pg.display.flip()
-
-

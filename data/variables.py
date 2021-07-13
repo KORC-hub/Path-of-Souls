@@ -45,6 +45,8 @@ position_boss_2 = [400,36]
 position_boss_3 = [600,36]
 position_boss = [position_boss_1,position_boss_2,position_boss_3]
 
+# player direccion
+WASD = [False, False, False, False]
 
 #collider
 collider = False
@@ -59,7 +61,7 @@ limit = [1,950,120,297]
 size_medal = [50,52]
 
 # frames per second
-fps = 15
+fps = 30
 
 # Accountants
 score = 0
@@ -76,7 +78,7 @@ Velocidad_enemigo = 0
 # state (Boolean)
 running = True
 menu = True
-play = False
+game = False
 art = False
 pause = False
 end_game = False
@@ -94,6 +96,7 @@ button_menu_play = pg.Rect(330, 450, 150, 50)
 button_menu_art = pg.Rect(560, 450, 150, 50)
 button_pause_play = pg.Rect(440, 250, 150, 50)
 button_pause_exit = pg.Rect(440, 350, 150, 50)
+button_pause_mouse = pg.Rect(920, 10, 73, 50)
 button_x = pg.Rect(920, 10, 73, 50)
 
 # Text 
@@ -127,14 +130,14 @@ kinematics_image = [0,cinematica_1,0,[cinematica_1_1,cinematica_2],0,[cinematica
 
 
 # picture player
-player = pg.image.load("resources/graphics/Player/Ymir.png")
+player = pg.image.load("resources/graphics/Player/player.png")
 
 # picture enemy
 Pettra = pg.image.load("resources/graphics/Boss/ataquePettra.png")
 Morrigan = pg.image.load("resources/graphics/Boss/ataqueMorrigan.png")
 Akhlut = pg.image.load("resources/graphics/Boss/ataqueAkhlut.png")
 Mundus = pg.image.load("resources/graphics/Boss/ataqueMundus.png")
-obstaculo_image = [0,0,Pettra,Pettra,Morrigan,0,Akhlut,0,Mundus]
+obstaculo_image = [0,0,Pettra,0,Morrigan,0,Akhlut,0,Mundus]
 
 # picture Boss
 
@@ -172,6 +175,8 @@ exit_on   = pg.image.load("resources/graphics/botones/exit_on.png")
 exit_off  = pg.image.load("resources/graphics/botones/exit_off.png")
 x_on   = pg.image.load("resources/graphics/botones/X_on.png")
 x_off  = pg.image.load("resources/graphics/botones/X_off.png")
+pause_mouse_on   = pg.image.load("resources/graphics/botones/pause_mouse_on.png")
+pause_mouse_off  = pg.image.load("resources/graphics/botones/pause_mouse_off.png")
 
 # --- music ---
 

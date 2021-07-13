@@ -20,6 +20,8 @@ def render_bar_life(screen):
 		v.bar_life_objects[i].render(screen)
 		if v.daño:
 			v.bar_life_objects[v.state_life].add()
+			v.score -= 200 
+			v.perdida_vida.play()
 
 def reiniciar_life():
 	for i in range(4):
