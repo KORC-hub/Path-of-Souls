@@ -15,7 +15,7 @@ white_green = (24, 196, 66)
 
 # window name
 name = "Path of souls"
-
+	
 # coordinates [x,y]
 position_base = [0,0]
 position_base_art = [0,0]
@@ -45,8 +45,8 @@ position_boss_2 = [400,36]
 position_boss_3 = [600,36]
 position_boss = [position_boss_1,position_boss_2,position_boss_3]
 
-# player direccion
-WASD = [False, False, False, False]
+# player move
+player_move = True 
 
 #collider
 collider = False
@@ -61,7 +61,7 @@ limit = [1,950,120,297]
 size_medal = [50,52]
 
 # frames per second
-fps = 20
+fps = 15
 
 # Accountants
 score = 0

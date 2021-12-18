@@ -30,11 +30,11 @@ class enemy_obj(pg.sprite.Sprite):
 
 		screen.blit(v.obstaculo_image[v.state],(self.rect.x,self.rect.y))
 
-		if self.rect.colliderect(rect):
-			self.velocidad_x = -18
+		if self.rect.colliderect(rect): # rect es la hitbox del player
+			self.velocidad_x = -18 # se cambia el sentido del enemigo
 			self.velocidad_y = -18
 			v.daño = True 
-			v.perdida_vida.play()
+			v.perdida_vida.play() # Sonido
 		else:
 			v.daño = False
 

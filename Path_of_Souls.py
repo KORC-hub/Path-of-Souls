@@ -1,7 +1,7 @@
 import pygame as pg
 import sys, random
 from data import variables as v
-from data import player 
+from data import player  
 from data import medal as m
 from data import enemy as e
 from data import bar_medal as bm
@@ -12,6 +12,7 @@ from data import bar_life as bf
 
 # main conditions for the execution of the window
 pg.init() 
+
 #pg.mixer.init()
 screen = pg.display.set_mode((v.width,v.height))
 pg.display.set_caption(v.name)
@@ -117,15 +118,11 @@ while v.running:
       mx,my = pg.mouse.get_pos()
 
       if v.state == 0:
-        pass
+        v.player_move = False
       else:
+        v.player_move = True
         if v.medal_on:
           m.medallas(screen,((player.rect.x+10),(player.rect.y+20),30,65))
-
-      if v.state == 0:
-        pass
-      else:
-        e.enemy.update(screen, player.rect)
 
       player.handle_event(event)
       screen.blit(player.image,player.rect)
@@ -283,11 +280,11 @@ while v.running:
 
  while v.kinematics:
 
-    print(v.state,v.state_life,v.kinematics_counter, v.state_medal, v.medal_counter)
+    print(v.state,v.state_life,v.kinematics_counter, v.state_medal, v.medal_counter) 
 
-    if v.state == 1 or v.state == 9:
+    if v.state == 1 or v.state == 9: # inicio y final 
       screen.blit(v.kinematics_image[v.state], v.position_base)
-    else:
+    else: # dialogos dobles 
       screen.blit(v.kinematics_image[v.state][v.kinematics_counter], v.position_base)
 
     for event in pg.event.get():
@@ -297,7 +294,7 @@ while v.running:
       elif event.type == pg.KEYDOWN:
         if event.key == pg.K_a:
           v.kinematics_counter = 1
-        elif event.key == pg.K_LEFT or event.key == pg.K_RIGHT or event.key == pg.K_UP or event.key == pg.K_DOWN: 
+        elif event.key == pg.K_LEFT or event.key == pg.K_RIGHT or event.key == pg.K_UP or event.key == pg.K_DOWN or event.key == pg.K_SPACE:
           v.state += 1 
           v.kinematics_counter = 0
           v.kinematics = False
