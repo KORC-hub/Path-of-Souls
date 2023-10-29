@@ -9,7 +9,7 @@ Samuel Orrego Castañeda
 
 Andrés Felipe Mira Loaiza
 
-Descripción del juego: La idea base del juego parh of souls 
+Descripción del juego: La idea base del juego path of souls 
 es crear un personaje el cual es controlado por medio de teclado,
 a medida que el usuario se abre paso entre los niveles enfrentara
 a diferentes jefes o obstáculos los cuales le brindaran una 
